@@ -121,6 +121,28 @@
 				</section>
 
 				<section>
+					<section><h3>Using es6 today</h3></section>
+
+					<section>
+						<h3>limited Browser availability</h3>
+						<img src="./img/browser_support.png" />
+						<img src="./img/mobile_support.png" />
+					</section>
+
+					<section>
+						<h3>transpilation tools</h3>
+						<ul>
+							<li>babel (we use this)</li>
+							<li>traceur compiler</li>
+							<li>TypeKit</li>
+							<li>nodejs implements some features, and some via flags</li>
+						</ul>
+					</section>
+
+
+				</section>
+
+				<section>
 					<h2>FEATURE OVERVIEW</h2>
 				</section>
 
@@ -287,7 +309,7 @@ function introduce(first, last, relative, verb) {
   bar: function () {
     var self = this;
     setTimeout(function () {
-      console.log(this.foo);
+      console.log(self.foo);
     }, 1000);
   }
 };</code></pre>

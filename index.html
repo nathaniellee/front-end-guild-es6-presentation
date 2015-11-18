@@ -54,17 +54,23 @@
 					</section>
 
 					<section>
+						<h3>ECMAScript ?= JavaScript</h3>
+					</section>
+
+					<section>
 						<h3>ECMAScript</h3>
 						<p>Official name of the programming language<br />commonly known as JavaScript™</p>
 					</section>
 
 					<section>
 						<h3>
-							JavaScript vs. JScript
+							LiveScript → JavaScript
+							<span class="fragment"><br />↓<br />JavaScript vs. JScript</span>
 							<span class="fragment"><br />↓<br />standardization (Ecma International)</span>
 							<span class="fragment"><br />↓<br />ECMAScript</span>
 						</h3>
 					</section>
+
 
 					<section>
 						<h3>ES5 === ECMAScript, 5th Edition</h3>
@@ -133,7 +139,6 @@
 					<section><h3>let</h3></section>
 
 					<section>
-						<!--img src="img/variables-var-keyword.png" width="900" /-->
 						<pre><code class="lang-javascript">for (var i = 0; i < 10; i++) {
   var j = i + 1;
   var $button = $('<button>BUTTON #' + j + '</button>')
@@ -142,7 +147,6 @@
       })
       .appendTo('#button-container');
 }</code></pre>
-						<!--img class="fragment" src="img/variables-hoisting.png" width="900" /-->
 						<pre><code class="fragment lang-javascript">var i, j, $button;
 for (i = 0; i < 10; i++) {
   j = i + 1;
@@ -155,7 +159,6 @@ for (i = 0; i < 10; i++) {
 					</section>
 
 					<section>
-						<!--img src="img/variables-let-keyword.png" width="900" /-->
 						<pre><code class="lang-javascript">for (var i = 0; i < 10; i++) {
   let j = i + 1;
   var $button = $('<button>BUTTON #' + j + '</button>')
@@ -175,9 +178,6 @@ for (i = 0; i < 10; i++) {
 ITEM_COUNT = 10;</code></pre>
 						<pre><code class="fragment lang-javascript">const ITEM_COUNT = 1;
 ITEM_COUNT = 10;   // error: "ITEM_COUNT" is read-only</code></pre>
-						<!--img src="img/variables-mutable.png" width="900" />
-						<img class="fragment" src="img/variables-const-keyword.png" width="900" />
-						<img class="fragment" src="img/variables-const-duplicated.png" width="900" /-->
 					</section>
 
 					<section>
@@ -213,7 +213,6 @@ console.log(ITEM_COUNT);     // 1</code></pre>
 WALKING_DEAD_CAST.splice(2, 1);
 WALKING_DEAD_CAST[0] = 'Lauren Cohan';
 WALKING_DEAD_CAST.push('Danai Gurira');</code></pre>
-						<!--img src="img/variables-const-reference.png" width="900" /-->
 					</section>
 				</section>
 
@@ -236,12 +235,9 @@ function introduce(first, last, relative, verb) {
     verb: verb
   }));
 }</code></pre>
-						<!--img src="img/strings.png" width="900" />
-						<img class="fragment" src="img/strings-underscore.png" width="900" /-->
 					</section>
 
 					<section>
-						<!--img src="img/strings-template-string.png" width="900" /-->
 						<pre><code class="lang-javascript">function introduce(first, last, relative, verb) {
 	alert(`Hello. My name is ${first} ${last}. You killed my ` +
 			`${relative}. Prepare to ${verb}.`);
@@ -250,11 +246,9 @@ function introduce(first, last, relative, verb) {
 	alert(`Hello. My name is ${first} ${last}. You killed my
 			${relative}. Prepare to ${verb}.`);
 }</code></pre>
-						<!--img class="fragment" src="img/strings-template-string-multiline.png" width="900" /-->
 					</section>
 
 					<section>
-						<!--img src="img/strings-html-strings.png" width="900" /-->
 						<pre><code class="lang-javascript">function render(data) {
   return $(
     '<article class="featured-story">' +
@@ -266,7 +260,6 @@ function introduce(first, last, relative, verb) {
     '</article>'
   );
 }</code></pre>
-						<!--img src="img/strings-html-template.png" width="900" /-->
 						<pre><code class="fragment lang-javascript">function render(data) {
   return $(
     `<article class="featured-story">
@@ -289,8 +282,6 @@ function introduce(first, last, relative, verb) {
 					</section>
 
 					<section>
-						<!--img src="img/arrow-async-this.png" width="900" />
-						<img class="fragment" src="img/arrow-async-this-with-arrow.png" width="900" /-->
 						<pre><code class="lang-javascript">var obj = {
   foo: 'abc',
   bar: function () {
@@ -388,8 +379,6 @@ var [, y, , height] = data;</code></pre>
 							<h4>Swap values without a temp variable</h4>
 							<pre><code class="lang-javascript">[x, y] = [y, x];</code></pre>
 						</div>
-						<!--img src="img/destructuring-array-indices.png" width="900" />
-						<img class="fragment" src="img/destructuring-arrays.png" width="900" /-->
 					</section>
 
 					<section>
@@ -405,13 +394,9 @@ var { name, age } = data;</code></pre>
 }
 
 listify({ name: 'John Doe', age: 36 });</code></pre>
-						<!--img src="img/destructuring-object-keys.png" width="900" />
-						<img class="fragment" src="img/destructuring-objects.png" width="900" />
-						<img class="fragment" src="img/destructuring-params.png" width="900" /-->
 					</section>
 
 					<section>
-						<!--img src="img/strings-html-template.png" width="900" /-->
 						<pre><code class="lang-javascript">function render(data) {
   return $(
     `<article class="featured-story">
@@ -423,7 +408,6 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
     </article>`
   );
 }</code></pre>
-						<!--img src="img/destructuring-html-template.png" width="900" /-->
 						<pre class="fragment"><code class="lang-javascript">function render({ author, publishedDate, title }) {
   return $(
     `<article class="featured-story">
@@ -438,7 +422,6 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 					</section>
 
 					<section>
-						<!--img src="img/destructuring-html-template-renamed.png" width="900" /-->
 						<pre><code class="lang-javascript">function render({ author, publishedDate:date, title }) {
   return $(
     `<article class="featured-story">
@@ -461,8 +444,6 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 					<section><h3>Default parameters</h3></section>
 
 					<section>
-						<!--img src="img/default-undefined.png" width="900" />
-						<img class="fragment" src="img/default-parameter.png" width="900" /-->
 						<pre><code class="lang-javascript">ApiObject.prototype.get = function get(key) {
   return this[key === undefined ? 'id' : key];
 };</code></pre>
@@ -487,8 +468,6 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 
 var numbers = [1, 2, 3];
 sum.apply(null, numbers);</code></pre>
-						<!--img src="img/spread-apply.png" width="900" />
-						<img class="fragment" src="img/spread-function-call.png" width="900" /-->
 						<pre class="fragment"><code class="lang-javascript">function sum(x, y, z) {
   return x + y + z;
 }
@@ -499,14 +478,12 @@ sum(...numbers);</code></pre>
 
 					<section>
 						<h4>Assignment</h4>
-						<!--img src="img/spread-destructuring.png" width="900" /-->
 						<pre><code class="lang-javascript">var [father, mother, ...children] = ['Mike', 'Carol', 'Greg',
     'Marcia', 'Peter', 'Jan', 'Bobby', 'Cindy'];</code></pre>
 					</section>
 
 					<section>
 						<h4>Inside array literals</h4>
-						<!--img src="img/spread-array-literal.png" width="900" /-->
 						<pre><code class="lang-javascript">var someReindeer = [
   'Comet',
   'Cupid',
@@ -525,13 +502,9 @@ var reindeer = [
 				</section>
 
 				<section>
-					<section><h3>Rest parameters</h3></section>
+					<section><h3>...Rest parameters</h3></section>
 
 					<section>
-						<!--img src="img/rest-partial-usage.png" width="900" /-->
-						<!--img src="img/rest-partial-classic.png" width="900" /-->
-						<!--img src="img/rest-partial-with-rest.png" width="900" /-->
-
 						<pre><code class="lang-javascript">function sum() {
   var value = 0;
   for (var i = 0; i < arguments.length; i++) {
@@ -697,51 +670,18 @@ var map = new Map(startingValues);</code></pre>
 				</section>
 
 				<section>
-					<section>
-						<h3>WeakMap</h3>
-					</section>
-
-					<section>
-						<h4>Map but keys must be objects</h4>
-						<pre><code class="lang-javascript">var weakmap = new WeakMap();
-var foo = {};
-var bar = {};
-
-weakmap.set(foo, bar);
-
-weakmap.get(foo);   // bar
-
-weakmap.has(foo);   // true
-
-weakmap.delete(foo);
-
-// NOTE: No `size` property or `clear` method.</code></pre>
-					</section>
-
-					<section>
-						<h4>Private variables</h4>
-						<pre><code class="lang-javascript">function MyClass() {
-	var foo = 'abc';
-	this.foo = '123';
-}
-
-MyClass.prototype.bar = function () {
-	foo;        // undefined;
-	this.foo;   // publicly accessible (and mutable)
-};</code></pre>
-						<pre class="fragment"><code class="lang-javascript">var secrets = new WeakMap();
-
-function MyClass() {
-	secrets.set(this, {
-		foo: 'abc'
-	});
-}
-
-MyClass.prototype.bar = function () {
-	secrets.get(this).foo;   // abc
-};</code></pre>
-					</section>
+					<h3>Classes and Promises</h3>
+					<aside class="notes">hand off to sean</aside>
 				</section>
+
+				<section>
+					<h3>Questions?</h3>
+				</section>
+
+				<section>
+					<h3>Join us in slack #nodejs</h3>
+				</section>
+
 			</div>
 		</div>
 

@@ -321,6 +321,30 @@ function introduce(first, last, relative, verb) {
 					</section>
 
 					<section>
+						<h4>Curly braces optional for one line of code</h4>
+						<pre><code class="lang-javascript">x => x * 2;
+
+// Equivalent to this...
+function (x) {
+	return x * 2;
+}</code></pre>
+						<div class="fragment">
+							<h4>Required for multiple lines</h4>
+							<pre><code class="lang-javascript">x => {
+  const y = x * 2;
+  return y;
+}</code></pre>
+						</div>
+						<div class="fragment">
+							<h4>Returning an object literal</h4>
+							<pre><code class="lang-javascript">(first, last, age) => ({
+  name: `${first} ${last}`,
+  age: age
+})</code></pre>
+						</div>
+					</section>
+
+					<section>
 						<h4>Unnamed (must be immediately consumed)</h4>
 						<pre><code class="lang-javascript">var double = x => x * 2;
 
@@ -577,6 +601,99 @@ let SomeObject = {
     // ...
   }
 });</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section><h3>New core prototypes</h3></section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Set</h3>
+					</section>
+
+					<section>
+						<h4>Collection of unique values</h4>
+						<pre><code class="lang-javascript">var set = new Set();
+
+set.add('123');
+set.add(123);
+
+set.has('123');   // true
+set.has(123);     // true
+
+set.size;         // 2
+
+set.delete(123);
+set.clear();
+</code></pre>
+					</section>
+
+					<section>
+						<h4>Starting values</h4>
+						<pre><code class="lang-javascript">var startingValues = [
+  'abc',
+  'xyz',
+  123,
+  456,
+  [],
+  [],
+  true,
+  false,
+  null
+];
+var set = new Set(startingValues);
+
+console.log(set.size);   // 9 (the empty arrays are unique objects)</code></pre>
+					</section>
+
+					<section>
+						<h4>Iteration over a set</h4>
+						<pre><code class="lang-javascript">for (let item of set) {
+  console.log(item);
+}</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Map</h3>
+					</section>
+
+					<section>
+						<h4>Collection of unique keys paired with values</h4>
+						<pre><code class="lang-javascript">var map = new Map();
+var foo = 1;
+var bar = 'a';
+
+map.set(foo, bar);
+
+map.get(foo);   // bar
+
+map.has(foo);   // true
+
+map.size;       // 1
+
+map.delete(foo);
+map.clear();
+</code></pre>
+					</section>
+
+					<section>
+						<h4>Starting values</h4>
+						<pre><code class="lang-javascript">var startingValues = [
+  [1, 'a'],
+  [[], false]
+];
+var map = new Map(startingValues);</code></pre>
+					</section>
+
+					<section>
+						<h4>Iteration over a map</h4>
+						<pre><code class="lang-javascript">for (let [key, value] of map) {
+  console.log(`${key}: ${value}`);
+}</code></pre>
 					</section>
 				</section>
 			</div>

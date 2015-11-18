@@ -176,34 +176,95 @@
 						<img src="img/arrow-async-this.png" width="900" />
 						<img class="fragment" src="img/arrow-async-this-with-arrow.png" width="900" />
 					</section>
-				</section>
-
-
-				<section>
-					<section><h3>Destructuring assignment</h3></section>
 
 					<section>
-						<img src="img/destructuring-array-indices.png" width="900" />
-						<img class="fragment" src="img/destructuring-arrays.png" width="900" />
+						<pre><code class="lang-javascript">
+React.createClass({
+	render: function render() {
+		let results = _.map(this.props.list, (item) => {
+			return <div>{this.props.title} - {item.name}</div>;
+		});
+
+		// ...
+	}
+});
+						</code></pre>
+						<aside class="notes">
+							This is useful in react when you want to access the component properties inside of a function.
+						</aside>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>Destructuring assignment</h3>
 					</section>
 
 					<section>
-						<img src="img/destructuring-object-keys.png" width="900" />
-						<img class="fragment" src="img/destructuring-objects.png" width="900" />
-						<img class="fragment" src="img/destructuring-params.png" width="900" />
+						<h4>assignment from an array</h4>
+						<pre><code class="lang-javascript">
+// es5
+var data = [10, 10, 50, 200];
+
+var x = data[0];
+var y = data[1];
+var width = data[2];
+var height = data[3];
+						</code></pre>
+						<pre class="fragment"><code class="lang-javascript">
+// es6
+let data = [10, 10, 50, 200];
+let [x, y, width, height] = data;
+						</code></pre>
+					</section>
+
+					<section>
+						<h4>assignment from an object</h4>
+						<pre><code class="lang-javascript">
+// es5
+var data = {name: 'John Doe', age: 36};
+var name = data.name;
+var age = data.age;
+						</code></pre>
+						<pre class="fragment"><code class="lang-javascript">
+// es6
+let data = {name: 'John Doe', age: 36};
+let {name, age} = data;
+						</code></pre>
+					</section>
+
+					<section>
+						<h4>destructuring arguments</h4>
+						<pre><code class="lang-javascript">
+// es6
+let data = {name: 'John Doe', age: 36};
+let {name, age} = data;
+
+function getHtml({name, age}) {
+	return (
+		`<ul>
+			<li>Name: ${name}</li>
+			<li>Age: ${age}</li>
+		</ul>`
+	);
+}
+						</code></pre>
 					</section>
 
 					<section>
 						<img src="img/strings-html-template.png" width="900" />
-					</section>
-
-					<section>
-						<img src="img/destructuring-html-template.png" width="900" />
+						<aside class="notes">
+							going back to our rendeirng an html template, we can destructure the arguments instead having to get values from the data object.
+						</aside>
 					</section>
 
 					<section>
 						<img src="img/destructuring-html-template-renamed.png" width="900" />
+						<aside class="notes">
+							we can also bind a property from the object to a different variable name
+						</aside>
 					</section>
+
 				</section>
 
 
@@ -212,7 +273,9 @@
 				</section>
 
 				<section>
-					<section><h3>Default parameters</h3></section>
+					<section>
+						<h3>Default parameters</h3>
+					</section>
 
 					<section>
 						<img src="img/default-undefined.png" width="900" />
@@ -222,10 +285,9 @@
 
 				<section>
 					<section>
-						<h3>Spread operator</h3>
-						<aside class="notes">The spread operator allows an expression to be expanded in place. This can be used with any iterable.</aside>
+						<h3>...Spread operator</h3>
+						<aside class="notes">The spread operator allows an expression to be expanded in place.</aside>
 					</section>
-
 
 					<section>
 						<h4>function calls</h4>
@@ -234,14 +296,15 @@
 					</section>
 
 					<section>
-						<h4>for assignment</h4>
-						<img src="img/spread-destructuring.png" width="900" />
-					</section>
-
-					<section>
 						<h4>inside array literals</h4>
 						<img src="img/spread-array-literal.png" width="900" />
 					</section>
+
+					<section>
+						<h4>for destructuring</h4>
+						<img src="img/spread-destructuring.png" width="900" />
+					</section>
+
 				</section>
 
 				<section>
@@ -315,7 +378,34 @@ let YourComponent = React.createClass({
 				</section>
 
 
+				<section>
+					<h3>classes & promises</h3>
+				</section>
 
+				<section>
+					<section><h3>Using es6 now</h3></section>
+					<section>
+						<h4>transpilation</h4>
+						<ul>
+							<li class="fragment">babel (we use this)</li>
+							<li class="fragment">google traceur-compiler</li>
+							<li class="fragment">TypeScript</li>
+						</ul>
+						<aside class="notes">
+							preprocessing es6 source code to es5 source code to be usable in the browser.
+						</aside>
+					</section>
+				</section>
+
+
+				<section>
+					<h3>Questions?</h3>
+					<p>
+						on slack:<br />
+						<strong>@nlee, @josephhsu, @slaude</strong><br />
+						or in the channel <strong>#nodejs</strong>
+					</p>
+				</section>
 			</div>
 
 		</div>

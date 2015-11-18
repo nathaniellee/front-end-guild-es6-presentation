@@ -380,15 +380,45 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 					</section>
 
 					<section>
-						<img src="img/strings-html-template.png" width="900" />
+						<!--img src="img/strings-html-template.png" width="900" /-->
+						<pre><code class="lang-javascript">function render(data) {
+  return $(
+    `<article class="featured-story">
+      <header>
+        <h1 class="headline">${data.title}</h1>
+        <span class="byline">By ${data.author}</span>
+        <span class="date">${data.publishedDate}</span>
+      </header>
+    </article>`
+  );
+}</code></pre>
+						<!--img src="img/destructuring-html-template.png" width="900" /-->
+						<pre class="fragment"><code class="lang-javascript">function render({ author, publishedDate, title }) {
+  return $(
+    `<article class="featured-story">
+      <header>
+        <h1 class="headline">${title}</h1>
+        <span class="byline">By ${author}</span>
+        <span class="date">${publishedDate}</span>
+      </header>
+    </article>`
+  );
+}</code></pre>
 					</section>
 
 					<section>
-						<img src="img/destructuring-html-template.png" width="900" />
-					</section>
-
-					<section>
-						<img src="img/destructuring-html-template-renamed.png" width="900" />
+						<!--img src="img/destructuring-html-template-renamed.png" width="900" /-->
+						<pre><code class="lang-javascript">function render({ author, publishedDate:date, title }) {
+  return $(
+    `<article class="featured-story">
+      <header>
+        <h1 class="headline">${title}</h1>
+        <span class="byline">By ${author}</span>
+        <span class="date">${date}</span>
+      </header>
+    </article>`
+  );
+}</code></pre>
 					</section>
 				</section>
 
@@ -401,8 +431,14 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 					<section><h3>Default parameters</h3></section>
 
 					<section>
-						<img src="img/default-undefined.png" width="900" />
-						<img class="fragment" src="img/default-parameter.png" width="900" />
+						<!--img src="img/default-undefined.png" width="900" />
+						<img class="fragment" src="img/default-parameter.png" width="900" /-->
+						<pre><code class="lang-javascript">ApiObject.prototype.get = function get(key) {
+  return this[key === undefined ? 'id' : key];
+};</code></pre>
+						<pre class="fragment"><code class="lang-javascript">ApiObject.prototype.get = function get(key = 'id') {
+  return this[key];
+};</code></pre>
 					</section>
 				</section>
 
@@ -414,19 +450,47 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 
 
 					<section>
-						<h4>function calls</h4>
-						<img src="img/spread-apply.png" width="900" />
-						<img class="fragment" src="img/spread-function-call.png" width="900" />
+						<h4>Function calls</h4>
+						<pre><code class="lang-javascript">function sum(x, y, z) {
+  return x + y + z;
+}
+
+var numbers = [1, 2, 3];
+sum.apply(null, numbers);</code></pre>
+						<!--img src="img/spread-apply.png" width="900" />
+						<img class="fragment" src="img/spread-function-call.png" width="900" /-->
+						<pre class="fragment"><code class="lang-javascript">function sum(x, y, z) {
+  return x + y + z;
+}
+
+var numbers = [1, 2, 3];
+sum(...numbers);</code></pre>
 					</section>
 
 					<section>
-						<h4>for assignment</h4>
-						<img src="img/spread-destructuring.png" width="900" />
+						<h4>Assignment</h4>
+						<!--img src="img/spread-destructuring.png" width="900" /-->
+						<pre><code class="lang-javascript">var [father, mother, ...children] = ['Mike', 'Carol', 'Greg',
+    'Marcia', 'Peter', 'Jan', 'Bobby', 'Cindy'];</code></pre>
 					</section>
 
 					<section>
-						<h4>inside array literals</h4>
-						<img src="img/spread-array-literal.png" width="900" />
+						<h4>Inside array literals</h4>
+						<!--img src="img/spread-array-literal.png" width="900" /-->
+						<pre><code class="lang-javascript">var someReindeer = [
+  'Comet',
+  'Cupid',
+  'Donner'
+];
+
+var reindeer = [
+  'Dasher',
+  'Dancer',
+  'Prancer',
+  'Vixen',
+  ...someReindeer,
+  'Blitzen'
+];</code></pre>
 					</section>
 				</section>
 
@@ -434,9 +498,27 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 					<section><h3>Rest parameters</h3></section>
 
 					<section>
-						<img src="img/rest-partial-usage.png" width="900" />
-						<img class="fragment" src="img/rest-partial-classic.png" width="900" />
+						<!--img src="img/rest-partial-usage.png" width="900" /-->
+						<!--img src="img/rest-partial-classic.png" width="900" /-->
 						<img class="fragment" src="img/rest-partial-with-rest.png" width="900" />
+
+						<pre><code class="lang-javascript">function sum() {
+  var value = 0;
+  for (var i = 0; i < arguments.length; i++) {
+    value += arguments[i];
+  }
+  return value;
+}</code></pre>
+						<pre class="fragment"><code class="lang-javascript">function brokenSum() {
+  return arguments.reduce(function (x, y) {
+    return x + y;
+  });
+}</code></pre>
+						<pre class="fragment"><code class="lang-javascript">function fixedSum(...values) {
+  return arguments.reduce(function (x, y) {
+    return x + y;
+  });
+}</code></pre>
 
 						<aside class="notes">
 							When you want to deal with arbitrary arguments, you aren't always garunteed an array.

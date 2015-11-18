@@ -42,11 +42,12 @@
 				</section>
 
 				<section>
-					<ul>
+					<h3>Topics</h3>
+					<ol>
 						<li>What is ECMAScript 6 and why is it such a big deal?</li>
 						<li>Overview of ECMAScript 6 features</li>
 						<li>Getting started with ECMAScript 6</li>
-					</ul>
+					</ol>
 				</section>
 
 
@@ -111,7 +112,7 @@
 					<section><h3>New variable keywords</h3></section>
 
 					<section>
-						<h3>Lexical vs Block scope</h3>
+						<h3>Function vs. block scope</h3>
 						<aside class="notes">
 							lexical scope only created inside functions, block scope is contained by {.
 						</aside>
@@ -122,12 +123,37 @@
 					<section><h3>let</h3></section>
 
 					<section>
-						<img src="img/variables-var-keyword.png" width="900" />
-						<img class="fragment" src="img/variables-hoisting.png" width="900" />
+						<!--img src="img/variables-var-keyword.png" width="900" /-->
+						<pre><code class="lang-javascript">for (var i = 0; i < 10; i++) {
+  var j = i + 1;
+  var $button = $('<button>BUTTON #' + j + '</button>')
+      .on('click', function () {
+        alert('You clicked BUTTON #' + j + '!');
+      })
+      .appendTo('#button-container');
+}</code></pre>
+						<!--img class="fragment" src="img/variables-hoisting.png" width="900" /-->
+						<pre><code class="fragment lang-javascript">var i, j, $button;
+for (i = 0; i < 10; i++) {
+  j = i + 1;
+  $button = $('<button>BUTTON #' + j + '</button>')
+      .on('click', function () {
+        alert('You clicked BUTTON #' + j + '!');
+      })
+      .appendTo('#button-container');
+}</code></pre>
 					</section>
 
 					<section>
-						<img src="img/variables-let-keyword.png" width="900" />
+						<!--img src="img/variables-let-keyword.png" width="900" /-->
+						<pre><code class="lang-javascript">for (var i = 0; i < 10; i++) {
+  let j = i + 1;
+  var $button = $('<button>BUTTON #' + j + '</button>')
+      .on('click', function () {
+        alert('You clicked BUTTON #' + j + '!');
+      })
+      .appendTo('#button-container');
+}</code></pre>
 					</section>
 				</section>
 
@@ -135,13 +161,49 @@
 					<section><h3>const</h3></section>
 
 					<section>
-						<img src="img/variables-mutable.png" width="900" />
+						<pre><code class="lang-javascript">var ITEM_COUNT = 1;
+ITEM_COUNT = 10;</code></pre>
+						<pre><code class="fragment lang-javascript">const ITEM_COUNT = 1;
+ITEM_COUNT = 10;   // error: "ITEM_COUNT" is read-only</code></pre>
+						<!--img src="img/variables-mutable.png" width="900" />
 						<img class="fragment" src="img/variables-const-keyword.png" width="900" />
-						<img class="fragment" src="img/variables-const-duplicated.png" width="900" />
+						<img class="fragment" src="img/variables-const-duplicated.png" width="900" /-->
 					</section>
 
 					<section>
-						<img src="img/variables-const-reference.png" width="900" />
+						<h4>Must be declared with a value</h4>
+						<pre><code class="lang-javascript">const ITEM_COUNT;   // error: Unexpected token</code></pre>
+					</section>
+
+					<section>
+						<h4>Must be unique within immediate scope</h4>
+						<pre><code class="lang-javascript">var ITEM_COUNT = 1;
+const ITEM_COUNT = 10;   // error: "ITEM_COUNT" is read-only</code></pre>
+						<pre><code class="fragment lang-javascript">var ITEM_COUNT = 1;
+
+if (true) {
+  const ITEM_COUNT = 10;
+  console.log(ITEM_COUNT);   // 10
+}
+
+console.log(ITEM_COUNT);     // 1</code></pre>
+					</section>
+
+					<section>
+						<h4>Constant objects are mutable</h4>
+						<pre><code class="lang-javascript">const WALKING_DEAD_CAST = [
+  'Andrew Lincoln',
+  'Jon Bernthal',
+  'Laurie Holden',
+  'Steven Yuen',
+  'Norman Reedus',
+  'Melissa McBride'
+];
+
+WALKING_DEAD_CAST.splice(2, 1);
+WALKING_DEAD_CAST[0] = 'Lauren Cohan';
+WALKING_DEAD_CAST.push('Danai Gurira');</code></pre>
+						<!--img src="img/variables-const-reference.png" width="900" /-->
 					</section>
 				</section>
 
@@ -150,21 +212,63 @@
 					<section><h3>Better strings</h3></section>
 
 					<section>
-						<img src="img/strings.png" width="900" />
-						<img class="fragment" src="img/strings-underscore.png" width="900" />
+						<pre><code class="lang-javascript">function introduce(first, last, relative, verb) {
+  alert('Hello. My name is ' + first + ' ' + last + '. You ' +
+      'killed my ' + relative + '. Prepare to ' + verb + '.');
+}</code></pre>
+						<pre><code class="fragment lang-javascript">var introduction = 'Hello. My name is <%= first %> <%= last %>.' +
+    'You killed my <%= relative %>. Prepare to <%= verb %>.';
+
+function introduce(first, last, relative, verb) {
+  alert(_.template(introduction, {
+    first: first,
+    last: last,
+    relative: relative,
+    verb: verb
+  }));
+}</code></pre>
+						<!--img src="img/strings.png" width="900" />
+						<img class="fragment" src="img/strings-underscore.png" width="900" /-->
 					</section>
 
 					<section>
-						<img src="img/strings-template-string.png" width="900" />
-						<img class="fragment" src="img/strings-template-string-multiline.png" width="900" />
+						<!--img src="img/strings-template-string.png" width="900" /-->
+						<pre><code class="lang-javascript">function introduce(first, last, relative, verb) {
+	alert(`Hello. My name is ${first} ${last}. You killed my ` +
+			`${relative}. Prepare to ${verb}.`);
+}</code></pre>
+						<pre><code class="fragment lang-javascript">function introduce(first, last, relative, verb) {
+	alert(`Hello. My name is ${first} ${last}. You killed my
+			${relative}. Prepare to ${verb}.`);
+}</code></pre>
+						<!--img class="fragment" src="img/strings-template-string-multiline.png" width="900" /-->
 					</section>
 
 					<section>
-						<img src="img/strings-html-strings.png" width="900" />
-					</section>
-
-					<section>
-						<img src="img/strings-html-template.png" width="900" />
+						<!--img src="img/strings-html-strings.png" width="900" /-->
+						<pre><code class="lang-javascript">function render(data) {
+  return $(
+    '<article class="featured-story">' +
+      '<header>' +
+        '<h1 class="headline">' + data.title + '</h1>' +
+        '<span class="byline">By ' + data.author + '</span>' +
+        '<span class="date">' + data.publishedDate + '</span>' +
+      '</header>' +
+    '</article>'
+  );
+}</code></pre>
+						<!--img src="img/strings-html-template.png" width="900" /-->
+						<pre><code class="fragment lang-javascript">function render(data) {
+  return $(
+    `<article class="featured-story">
+      <header>
+        <h1 class="headline">${data.title}</h1>
+        <span class="byline">By ${data.author}</span>
+        <span class="date">${data.publishedDate}</span>
+      </header>
+    </article>`
+  );
+}</code></pre>
 					</section>
 				</section>
 
@@ -173,8 +277,63 @@
 					<section><h3>Arrow functions</h3></section>
 
 					<section>
-						<img src="img/arrow-async-this.png" width="900" />
-						<img class="fragment" src="img/arrow-async-this-with-arrow.png" width="900" />
+						<h3>Dynamic vs. lexical binding</h3>
+					</section>
+
+					<section>
+						<!--img src="img/arrow-async-this.png" width="900" />
+						<img class="fragment" src="img/arrow-async-this-with-arrow.png" width="900" /-->
+						<pre><code class="lang-javascript">var obj = {
+  foo: 'abc',
+  bar: function () {
+    var self = this;
+    setTimeout(function () {
+      console.log(this.foo);
+    }, 1000);
+  }
+};</code></pre>
+						<pre><code class="fragment lang-javascript">var obj = {
+  foo: 'abc',
+  bar: function () {
+    setTimeout(() => console.log(this.foo), 1000);
+  }
+};</code></pre>
+					</section>
+
+					<section>
+						<h4>Parens optional for single parameter...</h4>
+						<pre><code class="lang-javascript">x => x * 2;</code></pre>
+						<h4>...but required for no or multiple params</h4>
+							<pre><code class="lang-javascript">() => alert('HI!');
+(x, y) => x + y;</code></pre>
+						<div class="fragment">
+							<h4>(Just use them all the time)</h4>
+							<pre><code class="lang-javascript">(x) => x + 1;</code></pre>
+						</div>
+					</section>
+
+					<section>
+						<h4>Unnamed (must be immediately consumed)</h4>
+						<pre><code class="lang-javascript">var double = x => x * 2;
+
+var mathUtils = {
+  add: (x, y) => x + y,
+  multiply: (x, y) => x * y
+};
+
+var result = (x => x + 1)(4);   // 5</code></pre>
+					</section>
+
+					<section>
+						<h4>Lexical arguments</h4>
+						<pre><code class="lang-javascript">var obj = {
+  foo: 'abc',
+  bar: function () {
+    setTimeout(() => console.log(arguments), 1000);
+  }
+};
+
+obj.bar(1, 2, 3);</code></pre>
 					</section>
 				</section>
 
@@ -183,14 +342,41 @@
 					<section><h3>Destructuring assignment</h3></section>
 
 					<section>
-						<img src="img/destructuring-array-indices.png" width="900" />
-						<img class="fragment" src="img/destructuring-arrays.png" width="900" />
+						<pre><code class="lang-javascript">var data = [10, 10, 50, 200];
+var x, y, width, height;
+
+x = data[0];
+y = data[1];
+width = data[2];
+height = data[3];</code></pre>
+						<pre><code class="fragment lang-javascript">var data = [10, 10, 50, 200];
+var [x, y, width, height] = data;
+var [x, y] = data;
+var [, y, , height] = data;</code></pre>
+						<div class="fragment">
+							<h4>Swap values without a temp variable</h4>
+							<pre><code class="lang-javascript">[x, y] = [y, x];</code></pre>
+						</div>
+						<!--img src="img/destructuring-array-indices.png" width="900" />
+						<img class="fragment" src="img/destructuring-arrays.png" width="900" /-->
 					</section>
 
 					<section>
-						<img src="img/destructuring-object-keys.png" width="900" />
+						<pre><code class="lang-javascript">var data = { name: 'John Doe', age: 36 };
+var { name, age } = data;</code></pre>
+						<pre><code class="fragment lang-javascript">function listify({ name, age }) {
+  return (
+    `<ul>
+      <li>Name: ${name}</li>
+      <li>Age: ${age}</li>
+    </ul>`
+  );
+}
+
+listify({ name: 'John Doe', age: 36 });</code></pre>
+						<!--img src="img/destructuring-object-keys.png" width="900" />
 						<img class="fragment" src="img/destructuring-objects.png" width="900" />
-						<img class="fragment" src="img/destructuring-params.png" width="900" />
+						<img class="fragment" src="img/destructuring-params.png" width="900" /-->
 					</section>
 
 					<section>

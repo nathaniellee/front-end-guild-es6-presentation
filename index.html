@@ -676,8 +676,7 @@ map.has(foo);   // true
 map.size;       // 1
 
 map.delete(foo);
-map.clear();
-</code></pre>
+map.clear();</code></pre>
 					</section>
 
 					<section>
@@ -694,6 +693,51 @@ var map = new Map(startingValues);</code></pre>
 						<pre><code class="lang-javascript">for (let [key, value] of map) {
   console.log(`${key}: ${value}`);
 }</code></pre>
+					</section>
+				</section>
+
+				<section>
+					<section>
+						<h3>WeakMap</h3>
+					</section>
+
+					<section>
+						<h4>Map but keys must be objects</h4>
+						<pre><code class="lang-javascript">var weakmap = new WeakMap();
+var foo = {};
+var bar = {};
+
+weakmap.set(foo, bar);
+
+weakmap.get(foo);   // bar
+
+weakmap.has(foo);   // true
+
+weakmap.delete(foo);</code></pre>
+					</section>
+
+					<section>
+						<h4>Private variables</h4>
+						<pre><code class="lang-javascript">function MyClass() {
+	var foo = 'abc';
+	this.foo = '123';
+}
+
+MyClass.prototype.bar = function () {
+	foo;        // undefined;
+	this.foo;   // publicly accessible (and mutable)
+};</code></pre>
+						<pre class="fragment"><code class="lang-javascript">var secrets = new WeakMap();
+
+function MyClass() {
+	secrets.set(this, {
+		foo: 'abc'
+	});
+}
+
+MyClass.prototype.bar = function () {
+	secrets.get(this).foo;   // abc
+};</code></pre>
 					</section>
 				</section>
 			</div>

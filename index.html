@@ -33,12 +33,10 @@
 	<body>
 
 		<div class="reveal">
-
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
 					<h1>ECMAScript 6</h1>
-					<!--h3>Modernizing your JavaScript</h3-->
 				</section>
 
 				<section>
@@ -50,22 +48,27 @@
 					</ol>
 				</section>
 
-
 				<section>
 					<section>
 						<h2>WHAT IS ECMASCRIPT 6?</h2>
 					</section>
 
 					<section>
-						<h3>What is ECMAScript?</h3>
+						<h3>ECMAScript</h3>
+						<p>Official name of the programming language<br />commonly known as JavaScript™</p>
 					</section>
 
 					<section>
-						<p>Official name of the programming language commonly known as JavaScript</p>
+						<h3>
+							JavaScript vs. JScript
+							<span class="fragment"><br />↓<br />standardization (Ecma International)</span>
+							<span class="fragment"><br />↓<br />ECMAScript</span>
+						</h3>
 					</section>
 
 					<section>
-						<p>Specification ECMA-262 maintained by Ecma International's technical committee TC-39</p>
+						<h3>ES5 === ECMAScript, 5th Edition</h3>
+						<h3>ES6 === ECMAScript, 6th Edition</h3>
 					</section>
 				</section>
 
@@ -75,26 +78,34 @@
 					</section>
 
 					<section>
-						<h3>ECMAScript, 5th Edition (a.k.a. ES5)</h3>
+						<h3>ECMAScript 5th Edition</h3>
 						<ul>
-							<li>Approved as a standard in December 2009</li>
-							<li>Scaled back subset of abandoned 4th edition focused mainly on updating existing features</li>
+							<li>Scaled back subset of abandoned 4th Edition</li>
+							<li>Focused mainly on bug fixes and compatibility</li>
 						</ul>
 					</section>
 
 					<section>
 						<h3>ESHarmony</h3>
-						<p>Versions of abandoned features from ES4</p>
+						<p>Stuff in ES4 that didn't make it into ES5</p>
+						<div class="fragment">
+							<h3>ES.next</h3>
+							<p>Subset of features from ESHarmony ready<br />for next release (i.e. ES6)</p>
+						</div>
 					</section>
 
 					<section>
-						<h3>ES.next => ES6</h3>
-						<p>Subset of features from ESHarmony which would eventually become known as ECMAScript, 6th Edition</p>
+						<h3>ECMAScript, 6th Edition</h3>
+						<ul>
+							<li>Approved in June 2015</li>
+							<li>Officially renamed ECMAScript 2015</li>
+						</ul>
+						<p>(ES5 approved in 2009, ES3 approvied in 1999)</p>
 					</section>
 
 					<section>
 						<h3>"Subset"</h3>
-						<p>Most significant update to the core of the language since the introduction of [] and {} in JavaScript 1.2!</p>
+						<p>Most significant update to the core of the language since the introduction of [] and {} in JavaScript 1.2 (approved in 1997)!</p>
 					</section>
 
 					<section>
@@ -102,7 +113,6 @@
 						<p>Incorporates concepts common amongst other popular languages with the goal of making it easier to get up and running for developers used to those languages</p>
 					</section>
 				</section>
-
 
 				<section>
 					<h2>FEATURE OVERVIEW</h2>
@@ -207,7 +217,6 @@ WALKING_DEAD_CAST.push('Danai Gurira');</code></pre>
 					</section>
 				</section>
 
-
 				<section>
 					<section><h3>Better strings</h3></section>
 
@@ -272,7 +281,6 @@ function introduce(first, last, relative, verb) {
 					</section>
 				</section>
 
-
 				<section>
 					<section><h3>Arrow functions</h3></section>
 
@@ -336,7 +344,6 @@ var result = (x => x + 1)(4);   // 5</code></pre>
 obj.bar(1, 2, 3);</code></pre>
 					</section>
 				</section>
-
 
 				<section>
 					<section><h3>Destructuring assignment</h3></section>
@@ -422,7 +429,6 @@ listify({ name: 'John Doe', age: 36 });</code></pre>
 					</section>
 				</section>
 
-
 				<section>
 					<h3>Improved parameters</h3>
 				</section>
@@ -500,7 +506,7 @@ var reindeer = [
 					<section>
 						<!--img src="img/rest-partial-usage.png" width="900" /-->
 						<!--img src="img/rest-partial-classic.png" width="900" /-->
-						<img class="fragment" src="img/rest-partial-with-rest.png" width="900" />
+						<!--img src="img/rest-partial-with-rest.png" width="900" /-->
 
 						<pre><code class="lang-javascript">function sum() {
   var value = 0;
@@ -515,7 +521,7 @@ var reindeer = [
   });
 }</code></pre>
 						<pre class="fragment"><code class="lang-javascript">function fixedSum(...values) {
-  return arguments.reduce(function (x, y) {
+  return values.reduce(function (x, y) {
     return x + y;
   });
 }</code></pre>
@@ -528,41 +534,34 @@ var reindeer = [
 				</section>
 
 				<section>
-					<section><h3>Enhanced Object literal</h3></section>
+					<section><h3>Enhanced object literals</h3></section>
 					<section>
-						<pre><code class="lang-javascript">
-var obj = {
-		// Shorthand for ‘handler: handler’
-		handler,
-		// Computed (dynamic) property names
-		[ 'prop_' + (() => 42)() ]: 42
-};
-						</code></pre>
+						<pre><code class="lang-javascript">var obj = {
+  // Shorthand for ‘handler: handler’
+  handler,
+  // Computed (dynamic) property names
+  [ 'prop_' + (() => 42)() ]: 42
+};</code></pre>
 					</section>
-
-
 				</section>
 
 				<section>
 					<section><h3>Concise methods</h3></section>
 
 					<section>
-						<h4>Concise methods</h4>
-						<pre><code class="lang-javascript" data-trim>
-// es5
+						<pre><code class="lang-javascript" data-trim>// es5
 var SomeObject = {
-	foo: function foo() {
-		// ...
-	}
+  foo: function foo() {
+    // ...
+  }
 };
 
 // es6
 let SomeObject = {
-	foo() {
-		// ...
-	}
-};
-						</code></pre>
+  foo() {
+    // ...
+  }
+};</code></pre>
 						<aside class="notes">
 							Good to use because it gives you named functions rather than annonymous, which is helpful in debugging.
 						</aside>
@@ -570,22 +569,17 @@ let SomeObject = {
 
 					<section>
 						<h4>Useful in React.js</h4>
-						<pre><code class="lang-javascript" data-trim>
-let YourComponent = React.createClass({
-	getDefaultProps() {
-	},
-	render() {
-		// ...
-	}
-});
-						</code></pre>
+						<pre><code class="lang-javascript" data-trim>const YourComponent = React.createClass({
+  getDefaultProps() {
+    // ...
+  },
+  render() {
+    // ...
+  }
+});</code></pre>
 					</section>
 				</section>
-
-
-
 			</div>
-
 		</div>
 
 		<script src="lib/js/head.min.js"></script>
